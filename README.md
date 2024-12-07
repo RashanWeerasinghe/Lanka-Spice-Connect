@@ -1,1 +1,1 @@
-# pos-api
+# Lanka Spice Connect
