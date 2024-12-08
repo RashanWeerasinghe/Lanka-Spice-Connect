@@ -40,16 +40,14 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - name: Authenticate with GCP
+        uses: google-github-actions/auth@v1
+        with:
+          credentials_json: ${{ secrets.GCP_CREDENTIALS }}
 
-      - name: Deploy to GCP Compute Engine
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          HOST: ${{ secrets.GCP_HOST }}
-          USER: ${{ secrets.GCP_USER }}
+      - name: Set GCP project
+        run: gcloud config set project ${{ secrets.G_PROJECT }}
+
+      - name: Deploy to App Engine
         run: |
-          echo "$SSH_PRIVATE_KEY" > private_key
-          chmod 600 private_key
-          scp -i private_key target/Lanka-Spice-Connect-0.0.1-SNAPSHOT.jar $USER@$HOST:/path/to/deploy
-          ssh -i private_key $USER@$HOST 'sudo systemctl restart your-app-service'
+          gcloud app deploy --quiet
