@@ -46,4 +46,5 @@ jobs:
 
       - name: Deploy to App Engine
         run: |
-          gcloud app deploy ~/Lanka-Spice-Connect/target/Lanka-Spice-Connect-0.0.1-SNAPSHOT.jar
+          gcloud app deploy /home/runner/Lanka-Spice-Connect/target/Lanka-Spice-Connect-0.0.1-SNAPSHOT.jar
+
