@@ -3,27 +3,18 @@ package com.example.Lanka.Spice.Connect.entity;
 import javax.persistence.*;
 import java.util.Set;
 
-@Entity
-public class cinnamon {
+@Entity(name = "suplier")
+public class supplier {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
-    private String title;
+    private Long suplierId;
+    private String suplierArea;
     private String cinnamonType;
+    private double buyPrice;
     private String quantity;
-
     private double sellPrice;
 
-    private String description;
-
-    private String image;
-
-    @ManyToOne
-    @JoinColumn(name = "farmer_id", nullable = false)
-    private farmer farmer;
-
-    @OneToMany(mappedBy = "cinnamon")
+    @OneToMany(mappedBy = "suplier")
     private Set<cinnamonandsupplier> cinnamonandsupliers;
-
 }
