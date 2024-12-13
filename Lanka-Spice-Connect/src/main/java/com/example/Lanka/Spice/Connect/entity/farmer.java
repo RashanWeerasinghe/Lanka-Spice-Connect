@@ -12,5 +12,5 @@ public class farmer {
 
 
     @OneToMany(mappedBy = "farmer")
-    private Set<cinnamon> cinnamons;
+    private Set<Cinnamon> cinnamons;
 }

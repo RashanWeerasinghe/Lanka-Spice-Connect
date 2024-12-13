@@ -14,10 +14,10 @@ public class cinnamonandsupplier {
 
     @ManyToOne
     @JoinColumn(name = "cinnamon_id", nullable = false)
-    private cinnamon cinnamon;
+    private Cinnamon cinnamon;
 
     @ManyToOne
     @JoinColumn(name = "suplier_id", nullable = false)
-    private supplier suplier;
+    private Supplier suplier;
 
 }
