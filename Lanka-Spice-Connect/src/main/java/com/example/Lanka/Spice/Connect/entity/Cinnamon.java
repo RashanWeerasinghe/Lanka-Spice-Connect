@@ -1,5 +1,9 @@
 package com.example.Lanka.Spice.Connect.entity;
 
+import com.sun.istack.NotNull;
+import org.springframework.lang.NonNull;
+import org.springframework.lang.Nullable;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -7,24 +11,46 @@ import java.util.Set;
 public class Cinnamon {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @NonNull
     private Long id;
 
+    @NotNull
     private String title;
+
+    @NonNull
     private String cinnamonType;
+
+    @NonNull
     private String quantity;
 
+    @NonNull
     private double sellPrice;
 
+    @Nullable
     private String description;
 
+    public Farmer getFarmer() {
+        return farmer;
+    }
+
+    public Set<CinnamonandSupplier> getCinnamonandsupliers() {
+        return cinnamonandsupliers;
+    }
+
+    public void setCinnamonandsupliers(Set<CinnamonandSupplier> cinnamonandsupliers) {
+        this.cinnamonandsupliers = cinnamonandsupliers;
+    }
+
+    @Nullable
     private String image;
 
     @ManyToOne
     @JoinColumn(name = "farmer_id", nullable = false)
-    private farmer farmer;
+
+    private Farmer farmer;
 
     @OneToMany(mappedBy = "cinnamon")
-    private Set<cinnamonandsupplier> cinnamonandsupliers;
+    private Set<CinnamonandSupplier> cinnamonandsupliers;
 
     public Long getId() {
         return id;
@@ -82,6 +108,9 @@ public class Cinnamon {
         this.image = image;
     }
 
-    public void setFarmerId(Long farmerId) {
+    public void setFarmer(Farmer farmer) {
+        this.farmer = farmer;
     }
+
+
 }

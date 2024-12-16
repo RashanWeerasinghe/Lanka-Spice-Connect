@@ -2,14 +2,18 @@ package com.example.Lanka.Spice.Connect.service.impl;
 
 import com.example.Lanka.Spice.Connect.dto.request.RequestCinnamonDto;
 import com.example.Lanka.Spice.Connect.dto.response.ResponseSuppierDto;
+import com.example.Lanka.Spice.Connect.entity.Farmer;
 import com.example.Lanka.Spice.Connect.entity.Supplier;
 import com.example.Lanka.Spice.Connect.entity.Cinnamon;
 import com.example.Lanka.Spice.Connect.repo.CinnamonRepo;
+import com.example.Lanka.Spice.Connect.repo.FarmerRepo;
 import com.example.Lanka.Spice.Connect.service.FarmerSerivce;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.Lanka.Spice.Connect.repo.SupplierRepo;
+import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.GeneratedValue;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,9 +27,13 @@ public class FarmerServiceImpl implements FarmerSerivce {
     @Autowired
     private final CinnamonRepo cinnamonRepo;
 
-    public FarmerServiceImpl(SupplierRepo supplierRepo, CinnamonRepo cinnamonRepo) {
+    @Autowired
+    private final FarmerRepo farmerRepo;
+
+    public FarmerServiceImpl(SupplierRepo supplierRepo, CinnamonRepo cinnamonRepo, FarmerRepo farmerRepo) {
         this.supplierRepo = supplierRepo;
         this.cinnamonRepo = cinnamonRepo;
+        this.farmerRepo = farmerRepo;
     }
 
 
@@ -55,8 +63,13 @@ public class FarmerServiceImpl implements FarmerSerivce {
     }
 
     @Override
+    @Transactional
     public String addCinnamon(RequestCinnamonDto requestCinnamonDto , Long farmerId) {
         try{
+
+            Farmer  farmer = farmerRepo
+                    .findById(farmerId)
+                    .orElseThrow(() -> new RuntimeException("Farmer not found with id: " + farmerId));
 
             Cinnamon cinnamon = new Cinnamon();
             cinnamon.setCinnamonType(requestCinnamonDto.getCinnamonType());
@@ -65,8 +78,8 @@ public class FarmerServiceImpl implements FarmerSerivce {
             cinnamon.setSellPrice(requestCinnamonDto.getSellPrice());
             cinnamon.setDescription(requestCinnamonDto.getDescription());
 
-
-            cinnamon.setFarmerId(farmerId);
+            System.out.println(farmer.getId());
+            cinnamon.setFarmer(farmer);
 
             cinnamonRepo.save(cinnamon);
             return "Cinnamon Added";

@@ -12,12 +12,11 @@ public class Supplier {
     private String suplierArea;
     private String cinnamonType;
     private double buyPrice;
-    private String quantity;
+    private double quantity;
     private double sellPrice;
 
     @OneToMany(mappedBy = "suplier")
-    private Set<cinnamonandsupplier> cinnamonandsupliers;
-
+    private Set<CinnamonandSupplier> cinnamonandsupliers;
 
     public Long getSuplierId() {
         return suplierId;
@@ -51,11 +50,11 @@ public class Supplier {
         this.buyPrice = buyPrice;
     }
 
-    public String getQuantity() {
+    public double getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(String quantity) {
+    public void setQuantity(double quantity) {
         this.quantity = quantity;
     }
 
@@ -65,5 +64,13 @@ public class Supplier {
 
     public void setSellPrice(double sellPrice) {
         this.sellPrice = sellPrice;
+    }
+
+    public Set<CinnamonandSupplier> getCinnamonandsupliers() {
+        return cinnamonandsupliers;
+    }
+
+    public void setCinnamonandsupliers(Set<CinnamonandSupplier> cinnamonandsupliers) {
+        this.cinnamonandsupliers = cinnamonandsupliers;
     }
 }
