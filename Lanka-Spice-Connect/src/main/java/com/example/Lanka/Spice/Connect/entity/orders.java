@@ -1,7 +1,6 @@
 package com.example.Lanka.Spice.Connect.entity;
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.Set;
 
 @Entity(name = "orders")
@@ -17,7 +16,7 @@ public class orders {
             name = "orders_products",
             joinColumns = @JoinColumn(name = "order_id"),
             inverseJoinColumns = @JoinColumn(name = "product_id"))
-    Set<companyproduct> userorders;
+    Set<CompanyProduct> userorders;
 
     @ManyToOne
     @JoinColumn(name = "customer_id", nullable = false)

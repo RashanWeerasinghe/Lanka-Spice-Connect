@@ -18,6 +18,18 @@ public class Supplier {
     @OneToMany(mappedBy = "suplier")
     private Set<CinnamonandSupplier> cinnamonandsupliers;
 
+    @ManyToOne
+    @JoinColumn(name = "sales_representative_id", nullable = false)
+    private SalesRepresentative salesrepresentative;
+
+    public SalesRepresentative getSalesrepresentative() {
+        return salesrepresentative;
+    }
+
+    public void setSalesrepresentative(SalesRepresentative salesrepresentative) {
+        this.salesrepresentative = salesrepresentative;
+    }
+
     public Long getSuplierId() {
         return suplierId;
     }
