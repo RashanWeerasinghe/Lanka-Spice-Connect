@@ -46,7 +46,6 @@ public class Cinnamon {
 
     @ManyToOne
     @JoinColumn(name = "farmer_id", nullable = false)
-
     private Farmer farmer;
 
     @OneToMany(mappedBy = "cinnamon")
