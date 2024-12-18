@@ -14,13 +14,33 @@ public class CompanyProduct {
 
     private double companyPrice;
 
-    @ManyToMany(mappedBy = "userorders")
-    Set<orders> orders;
+
+    @OneToMany(mappedBy = "product")
+    private Set<Orders_Products> orders;
 
     @ManyToOne
     @JoinColumn(name = "ecommerce_manager_id", nullable = false)
     private EcommerceManager ecommercemanager;
 
+    public CompanyProduct(Long id, String productName, String productType, double companyPrice, EcommerceManager ecommercemanager) {
+        this.id = id;
+        this.productName = productName;
+        this.productType = productType;
+        this.companyPrice = companyPrice;
+        this.ecommercemanager = ecommercemanager;
+    }
+
+    public CompanyProduct() {
+
+    }
+
+    public Set<Orders_Products> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Set<Orders_Products> orders) {
+        this.orders = orders;
+    }
 
     public Long getId() {
         return id;
@@ -54,13 +74,7 @@ public class CompanyProduct {
         this.companyPrice = companyPrice;
     }
 
-    public Set<com.example.Lanka.Spice.Connect.entity.orders> getOrders() {
-        return orders;
-    }
 
-    public void setOrders(Set<com.example.Lanka.Spice.Connect.entity.orders> orders) {
-        this.orders = orders;
-    }
 
     public EcommerceManager getEcommercemanager() {
         return ecommercemanager;

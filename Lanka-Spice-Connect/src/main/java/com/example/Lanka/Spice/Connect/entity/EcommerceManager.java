@@ -13,4 +13,19 @@ public class EcommerceManager {
     @OneToMany(mappedBy = "ecommercemanager")
     private Set<CompanyProduct> companyproducts;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Set<CompanyProduct> getCompanyproducts() {
+        return companyproducts;
+    }
+
+    public void setCompanyproducts(Set<CompanyProduct> companyproducts) {
+        this.companyproducts = companyproducts;
+    }
 }

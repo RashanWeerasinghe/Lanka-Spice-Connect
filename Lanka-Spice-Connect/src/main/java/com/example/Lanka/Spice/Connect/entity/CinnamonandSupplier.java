@@ -27,6 +27,10 @@ public class CinnamonandSupplier {
         this.quantity = quantity;
     }
 
+    public CinnamonandSupplier() {
+
+    }
+
     public Long getId() {
         return id;
     }
