@@ -16,7 +16,7 @@ public class CompanyProduct {
 
 
     @OneToMany(mappedBy = "product")
-    private Set<Orders_Products> orders;
+    private Set<Orders_Product> orders;
 
     @ManyToOne
     @JoinColumn(name = "ecommerce_manager_id", nullable = false)
@@ -34,11 +34,11 @@ public class CompanyProduct {
 
     }
 
-    public Set<Orders_Products> getOrders() {
+    public Set<Orders_Product> getOrders() {
         return orders;
     }
 
-    public void setOrders(Set<Orders_Products> orders) {
+    public void setOrders(Set<Orders_Product> orders) {
         this.orders = orders;
     }
 

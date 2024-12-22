@@ -7,15 +7,14 @@ import java.util.Set;
 public class Orders {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private double total;
 
     private String shippingAddress;
 
 
-    @OneToMany(mappedBy = "order")
-    private Set<Orders_Products> userorders;
+    @OneToMany(mappedBy = "order",cascade = CascadeType.ALL )
+    private Set<Orders_Product> userorders;
 
     @ManyToOne
     @JoinColumn(name = "customer_id", nullable = false)
@@ -44,12 +43,23 @@ public class Orders {
         this.deliverypartner = deliverypartner;
     }
 
+    public Orders(Long orderId) {
+        this.id = orderId;
+    }
 
-    public Set<Orders_Products> getUserorders() {
+    public Orders(Long total, String shippingAddress, Object o, Customer customer, DeliveryPartner deliveryPartner) {
+        this.total = total;
+        this.shippingAddress = shippingAddress;
+        this.customer = customer;
+        this.deliverypartner = deliveryPartner;
+    }
+
+
+    public Set<Orders_Product> getUserorders() {
         return userorders;
     }
 
-    public void setUserorders(Set<Orders_Products> userorders) {
+    public void setUserorders(Set<Orders_Product> userorders) {
         this.userorders = userorders;
     }
 
