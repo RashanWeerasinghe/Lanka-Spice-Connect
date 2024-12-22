@@ -2,11 +2,10 @@ package com.example.Lanka.Spice.Connect.entity;
 
 import javax.persistence.*;
 
-@Entity(name = "orders_products")
-public class Orders_Products {
+@Entity(name = "orders_product")
+public class Orders_Product {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
 
@@ -18,17 +17,14 @@ public class Orders_Products {
     @JoinColumn(name = "product_id", nullable = false)
     private CompanyProduct product;
 
-    public Orders_Products() {
-
-    }
-
-    public Orders_Products(long l, CompanyProduct companyProduct) {
+    public Orders_Product(Long l, Orders order, CompanyProduct companyProduct) {
         this.id = l;
+        this.order = order;
         this.product = companyProduct;
     }
 
-    public Orders_Products(CompanyProduct companyProduct) {
-        this.product = companyProduct;
+    public Orders_Product() {
+
     }
 
     public Long getId() {

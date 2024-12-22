@@ -32,7 +32,7 @@ public class CustomerController {
 
         String result = customerService.order(requestOrderDto);
 
-        return "Product added successfully";
+        return result;
     }
 
 }
